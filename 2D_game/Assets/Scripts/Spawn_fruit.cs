@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class Spawn_fruit : MonoBehaviour
 {
-    public GameObject prefab;
+    public GameObject[] prefab;
 
     public Vector2 minPos;
     public Vector2 maxPos;
     
-    private float spawn_delay = 1.00f;
-    
+    private float spawn_delay = 0.09f;
+
+    private int spawn_count = 10;
+
+
     private IEnumerator Start()
     {
-        int spawn_count = 5;
+        int spawn_count = 10;
 
         while (spawn_count > 0)
         {
+            int rand = Random.Range(0, prefab.Length);
             spawn_count--;
             var pos = new Vector2(Random.Range(minPos.x, maxPos.x), Random.Range(minPos.y, maxPos.y));
-            Instantiate(prefab, pos, Quaternion.identity);
+            Instantiate(prefab[rand], pos, Quaternion.identity);
             yield return new WaitForSeconds(spawn_delay);
         }
     }
