@@ -14,6 +14,8 @@ public class Hero : MonoBehaviour
     public Sprite fullheart;
     public Sprite emptyheart;
 
+    public GameObject panel;
+
     private void FixedUpdate()
     {
         transform.position += new Vector3(speed, 0, 0) * Input.GetAxis("Horizontal");
@@ -52,7 +54,13 @@ public class Hero : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             health -= dmg;
-           
+
+            if (health <= 0)
+            {
+                hearts[0].sprite = emptyheart;
+                Destroy(gameObject);
+                panel.SetActive(true);
+            }          
         }
     }
 
