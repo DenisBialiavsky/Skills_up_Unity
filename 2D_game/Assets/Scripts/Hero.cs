@@ -18,21 +18,37 @@ public class Hero : MonoBehaviour
 
     public GameObject panel;
 
+    private Rigidbody2D rig;
+
+    
+    public Joystick joystick;
+
+    private Vector2 moveInput;
+    private Vector2 moveVelocity;
+
+    private void Start()
+    {
+        rig = GetComponent<Rigidbody2D>();
+    }
+
     private void Update()
     {
-        if (!facingright && transform.position.x > 0)
+        
+        moveInput = new Vector2(joystick.Horizontal, joystick.Vertical);
+        moveVelocity = moveInput.normalized * speed;
+
+        if (!facingright && moveInput.x > 0)
         {
             Flip();
         }
-        else if(facingright && transform.position.x < 0)
+        else if(facingright && moveInput.x < 0)
         {
             Flip();
         }
     }
     private void FixedUpdate()
     {
-        transform.position += new Vector3(speed, 0, 0) * Input.GetAxis("Horizontal");
-        transform.position += new Vector3(0, speed, 0) * Input.GetAxis("Vertical");
+        rig.MovePosition(rig.position + moveVelocity * Time.fixedDeltaTime);
 
         
 
