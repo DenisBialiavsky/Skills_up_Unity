@@ -14,27 +14,13 @@ public class Enemies : MonoBehaviour
 
     void Update()
     {
-
-        positions = new Vector3(Random.Range(minpos.x, maxpos.x), Random.Range(minpos.y, maxpos.y), positions.z);
         transform.position = Vector3.MoveTowards(transform.position, positions * Time.deltaTime, speed);
-        
+
+        if (transform.position == positions * Time.deltaTime)
+        {
+            positions = new Vector3(Random.Range(minpos.x, maxpos.x), Random.Range(minpos.y, maxpos.y), positions.z);
+            transform.position = positions;
+        }
         
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
-
 }
