@@ -19,7 +19,6 @@ public class Hero : MonoBehaviour
     public GameObject panel;
 
     private Rigidbody2D rig;
-
     
     public Joystick joystick;
 
@@ -49,8 +48,6 @@ public class Hero : MonoBehaviour
     private void FixedUpdate()
     {
         rig.MovePosition(rig.position + moveVelocity * Time.fixedDeltaTime);
-
-        
 
         if (health > current_hearts)
         {
