@@ -10,18 +10,31 @@ public class Hero : MonoBehaviour
     public int current_hearts;
     public float dmg;
 
+    public bool facingright = true;
+
     public Image[] hearts;
     public Sprite fullheart;
     public Sprite emptyheart;
 
     public GameObject panel;
 
+    private void Update()
+    {
+        if (!facingright && transform.position.x > 0)
+        {
+            Flip();
+        }
+        else if(facingright && transform.position.x < 0)
+        {
+            Flip();
+        }
+    }
     private void FixedUpdate()
     {
         transform.position += new Vector3(speed, 0, 0) * Input.GetAxis("Horizontal");
         transform.position += new Vector3(0, speed, 0) * Input.GetAxis("Vertical");
 
-        GetComponent<SpriteRenderer>().flipX = false;
+        
 
         if (health > current_hearts)
         {
@@ -62,6 +75,14 @@ public class Hero : MonoBehaviour
                 panel.SetActive(true);
             }          
         }
+    }
+
+    private void Flip()
+    {
+        facingright = !facingright;
+        Vector3 Scaler = transform.localScale;
+        Scaler.x *= -1;
+        transform.localScale = Scaler;
     }
 
 }
