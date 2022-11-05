@@ -40,7 +40,7 @@ public class Hero : MonoBehaviour
         {
             Flip();
         }
-        else if(facingright && moveInput.x < 0)
+        else if (facingright && moveInput.x < 0)
         {
             Flip();
         }

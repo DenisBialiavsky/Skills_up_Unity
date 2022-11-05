@@ -10,7 +10,6 @@ public class Menu : MonoBehaviour
     public string SceneName;
 
     public Button play;
-
     public Button exit;
 
     // Start is called before the first frame update

@@ -9,11 +9,7 @@ public class Spawn_fruit : MonoBehaviour
     public Vector2 minPos;
     public Vector2 maxPos;
     
-    
     private float spawn_delay = 0.09f;
-
-    private int spawn_count = 10;
-
 
     private IEnumerator Start()
     {
